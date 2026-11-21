@@ -2,7 +2,7 @@
   "name": "taehyung-yeontan-desktop-pet",
   "productName": "Taehyung and Yeontan",
   "description": "A tiny Taehyung and Yeontan desktop pet that walks along the bottom of your screen. Fan-made.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "tipandtale",
   "license": "SEE LICENSE IN LICENSE",
   "main": "main.js",
@@ -34,7 +34,8 @@
             "arm64"
           ]
         }
-      ]
+      ],
+      "identity": null
     },
     "win": {
       "target": [
@@ -58,7 +59,8 @@
       "repo": "taehyungyeontan-desktop",
       "releaseType": "release"
     },
-    "artifactName": "Taehyung-and-Yeontan-${version}-${os}-${arch}.${ext}"
+    "artifactName": "Taehyung-and-Yeontan-${version}-${os}-${arch}.${ext}",
+    "afterPack": "build/adhoc-sign.js"
   },
   "repository": {
     "type": "git",
