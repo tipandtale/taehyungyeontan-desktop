@@ -1,0 +1,71 @@
+{
+  "name": "taehyung-yeontan-desktop-pet",
+  "productName": "Taehyung and Yeontan",
+  "description": "A tiny Taehyung and Yeontan desktop pet that walks along the bottom of your screen. Fan-made.",
+  "version": "1.0.0",
+  "author": "tipandtale",
+  "license": "SEE LICENSE IN LICENSE",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.0.0"
+  },
+  "build": {
+    "appId": "com.tipandtale.taehyungyeontan",
+    "productName": "Taehyung and Yeontan",
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer/**",
+      "assets/**"
+    ],
+    "icon": "assets/icon.png",
+    "mac": {
+      "category": "public.app-category.entertainment",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ]
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "category": "Utility"
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "tipandtale",
+      "repo": "taehyungyeontan-desktop",
+      "releaseType": "release"
+    },
+    "artifactName": "Taehyung-and-Yeontan-${version}-${os}-${arch}.${ext}"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tipandtale/taehyungyeontan-desktop.git"
+  },
+  "homepage": "https://github.com/tipandtale/taehyungyeontan-desktop#readme",
+  "bugs": {
+    "url": "https://github.com/tipandtale/taehyungyeontan-desktop/issues"
+  }
+}

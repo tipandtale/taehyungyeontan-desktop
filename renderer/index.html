@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'">
+<style>
+  :root { --s: 150px; }
+  html, body {
+    margin: 0; padding: 0; width: 100%; height: 100%;
+    overflow: hidden; background: transparent;
+    user-select: none; -webkit-user-select: none;
+  }
+  #stage {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+  }
+
+  #chip {
+    position: absolute; top: 4px; left: 50%; transform: translateX(-50%);
+    display: none; white-space: nowrap;
+    padding: 4px 10px; border-radius: 12px;
+    background: rgba(255,255,255,.92); color: #8a5a3c;
+    font: 700 11px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    box-shadow: 0 3px 10px rgba(110,60,30,.2);
+  }
+
+  #bubble {
+    position: absolute; left: 50%; bottom: calc(var(--s) + 6px);
+    transform: translateX(-50%);
+    width: max-content; max-width: calc(100% - 10px);
+    box-sizing: border-box;
+    padding: 7px 11px; border-radius: 14px;
+    background: rgba(255,255,255,.95); color: #8a5a3c; text-align: center;
+    font: 600 11.5px/1.35 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    box-shadow: 0 3px 10px rgba(110,60,30,.22);
+    opacity: 0; transition: opacity .2s ease; pointer-events: none;
+  }
+  #bubble.visible { opacity: 1; }
+  #bubble::after {
+    content: ""; position: absolute; left: 50%; bottom: -4px;
+    width: 8px; height: 8px; background: rgba(255,255,255,.95);
+    transform: translateX(-50%) rotate(45deg);
+  }
+
+  #pet { width: var(--s); height: var(--s); cursor: grab; transform-origin: 50% 100%; }
+  #pet.grabbing { cursor: grabbing; }
+  #img { display: block; width: 100%; height: 100%; pointer-events: none; -webkit-user-drag: none; }
+
+  .walk-bob  { animation: walk-bob .24s ease-in-out infinite alternate; }
+  .run-bob   { animation: run-bob .15s ease-in-out infinite alternate; }
+  .sleep-bob { animation: sleep-bob 2.4s ease-in-out infinite; }
+  .saved-bob { animation: saved-bob .45s ease-in-out infinite alternate; }
+  .worry-bob { animation: worry-bob .22s ease-in-out infinite; }
+  @keyframes walk-bob  { from { transform: translateY(0); } to { transform: translateY(-3px); } }
+  @keyframes run-bob   { from { transform: translateY(0); } to { transform: translateY(-6px); } }
+  @keyframes sleep-bob { 0%,100% { transform: scaleY(1); } 50% { transform: scaleY(.985); } }
+  @keyframes saved-bob { from { transform: translateY(0); } to { transform: translateY(-10px); } }
+  @keyframes worry-bob { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-3px); } 75% { transform: translateX(3px); } }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="chip"></div>
+  <div id="bubble"></div>
+  <div id="pet"><img id="img" src="../assets/idle.png" alt="Taehyung and Yeontan" draggable="false"></div>
+</div>
+<script src="renderer.js"></script>
+</body>
+</html>
